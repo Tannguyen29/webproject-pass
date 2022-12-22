@@ -59,7 +59,6 @@
     </nav>
 </div>
 				{% elseif is_granted('ROLE_USER') %}
-					<!-- ROLE_CUSTOMER -->
 					<div class="example-wrapper">
     <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
         <div class="container-fluid">
@@ -73,10 +72,10 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="{{path('app_student')}}">Home</a>
-                    <a class="nav-link" href="{{path('acc_detail')}}">Account Information</a>
-                    <a class="nav-link" href="{{path('student_curriculum')}}">Curriculum</a>
-                    <a class="nav-link" href="{{path('student_schedule')}}">Schedule</a>
-					<a class="nav-link text-danger" href="{{ path('app_logout')}}">Logout
+                    <a class="nav-link" href="#">Account Information</a>
+                    <a class="nav-link" href="#">Curriculum</a>
+                    <a class="nav-link" href="#">Schedule</a>
+					<a class="nav-link text-danger" href="#">Logout
 								<u>
 									<i>
 										{% if app.user != null %}
