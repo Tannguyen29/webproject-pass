@@ -29,6 +29,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Userdetail $Userdetail = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -97,5 +100,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getUserdetail(): ?Userdetail
+    {
+        return $this->Userdetail;
+    }
+
+    public function setUserdetail(?Userdetail $Userdetail): self
+    {
+        $this->Userdetail = $Userdetail;
+
+        return $this;
     }
 }

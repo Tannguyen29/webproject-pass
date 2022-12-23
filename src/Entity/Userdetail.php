@@ -28,6 +28,9 @@ class Userdetail
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\OneToOne(mappedBy: 'Userdetail', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,28 @@ class Userdetail
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setUserdetail(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getUserdetail() !== $this) {
+            $user->setUserdetail($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }
