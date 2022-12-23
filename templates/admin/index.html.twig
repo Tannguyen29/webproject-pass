@@ -1,6 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
-
 {% block body %}
+    <style>
+        body {
+            padding-top: 140px;
+        }
+    </style>
+<div class="container-fluid" style="border:1px solid #cecece;">
+<div class="row">
+    <div class="col-sm-6 mb-3 mb-md-0">
+		<a href="https://www.facebook.com/GreenwichVietNam" target="_blank">
+			<img src="https://reviewedu.net/wp-content/uploads/2021/10/dai-hoc-fpt-greenwich-0-1.png" style="width: 100%;">
+		</a>
+    </div>
+<div class="col-sm-6">
+            <div class="card">
+                <div class="card-header" style="font-weight: bold">Admin Function 
+                    
+                </div>
+                <div class="card-body">
+                    
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Registration/Feedback</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                  </li>
+                                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                  </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                              </div>
+                            <div class="x_content" style="display: block;">
+                            <ul>
+                                <li><a class="nav-link" href="{{path('app_student_detail_crud')}}">CRUD student</a></li>
+                                <li><a class="nav-link" href="#">Curriculum</a></li>
+                                <li><a class="nav-link" href="#">Feedback</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
