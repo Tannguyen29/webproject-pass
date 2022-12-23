@@ -38,14 +38,21 @@ class UserdetailType extends AbstractType
                 'maxlength' => 50
             ]
         ])
+        ->add('Phone',TextType::class,
+            [
+                'label' => 'Phone number',
+                'attr' => [
+                    'maxlength' => 255
+                ]
+            ])
         ->add('image' ,TextType::class,
         [
             'label' => 'User image',
             'attr' => [
                 'maxlength' => 255
             ]
-        ])
-        ;
+            ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

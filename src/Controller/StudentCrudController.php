@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Userdetail;
+use App\Form\UserdetailType;
 use App\Repository\UserRepository;
+use App\Repository\UserdetailRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +22,33 @@ class StudentCrudController extends AbstractController
                 'users' => $users
             ]);
       }
+
+      #[Route('studentdetail/crud', name: 'app_student_detail_crud')]
+    public function studendetailtindex (UserdetailRepository $UserdetailRepository):Response {
+        $userdetails=$UserdetailRepository->findAll();
+        return $this->render('userdetail/index.html.twig',
+            [
+                'userdetails' => $userdetails
+            ]);
+      }
+    
+    #[Route('studentdetail/add', name: 'student_detail_add')]
+      public function UserAdd (Request $request, ManagerRegistry $managerRegistry) {
+        $userdetails = new Userdetail;
+        $form = $this->createForm(UserdetailType::class,$userdetails);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager = $managerRegistry->getManager();
+            $manager->persist($userdetails);
+            $manager->flush();
+            $this->addFlash('Info','Add user successfully !');
+            return $this->redirectToRoute('app_student_detail_crud');
+        }
+        return $this->renderForm('userdetail/add.html.twig',
+        [
+            'userdetailsForm' => $form
+        ]);
+      } 
 
     #[Route('/detail/{id}', name: 'student_detail')]
     public function studentDetail ($id, UserRepository $UserRepository) {

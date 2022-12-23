@@ -1,3 +1,6 @@
+{% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
+
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
@@ -12,6 +15,11 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+                {{ form_row(registrationForm.userdetail.name) }}
+        {{ form_row(registrationForm.userdetail.age) }}
+        {{ form_row(registrationForm.userdetail.address) }}
+        {{ form_row(registrationForm.userdetail.Phone) }}
+        {{ form_row(registrationForm.userdetail.image) }}
         <button type="submit" class="btn btn-primary">Register</button>
     {{ form_end(registrationForm) }}
 {% endblock %}
