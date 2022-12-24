@@ -6,6 +6,7 @@ use App\Entity\Feedback;
 use App\Form\FeedbackType;
 use App\Repository\FeedbackRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,8 +55,8 @@ public function feedbackDetail ($id,FeedbackRepository $FeedbackRepository) {
 }
 #[IsGranted("ROLE_ADMIN")]
 #[Route('feedback/delete/{id}', name: 'feedback_delete')]
-public function feedbackDelete ($id, ManagerRegistry $managerRegistry) {
-  $feedbacks = $ReportRepository->getRepository(FeedbackType::class)->find($id);
+public function feedbackDelete ($id,ManagerRegistry $managerRegistry) {
+  $feedbacks = $managerRegistry->getRepository(FeedbackType::class)->find($id);
   if ($feedbacks == null) {
       $this->addFlash('Warning', 'users not existed !');
   
