@@ -14,12 +14,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ClassroomCrudController extends AbstractController
 {
     #[Route('/classroom/crud', name: 'app_classroom_crud')]
-    public function index(): Response
+    public function index(ClassroomRepository $ClassroomRepository): Response
     {
-        return $this->render('classroom_crud/index.html.twig', [
-            'controller_name' => 'ClassroomCrudController',
+        $class=$ClassroomRepository->findAll();
+        return $this->render('classroom_crud/index.html.twig',
+        [
+            'class' => $class
         ]);
-    }
+  }
+
 
     #[Route('/edit/{id}', name: 'classroom_edit')]
     public function classroomEdit ($id, ClassroomRepository $ClassroomRepository, Request $request, ManagerRegistry $managerregistry):Response{

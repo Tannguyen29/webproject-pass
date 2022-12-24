@@ -20,16 +20,16 @@
         <th class="text text-success">Actions</th>
     </tr>
 
-{% for class in classroom %}
+{% for classroom in class %}
     <tr>
-        <td>{{ class.id }}</td>
-        <td>{{ class.classcode }}</td>
-        <td>{{ class.classname }}</td>
+        <td>{{ classroom.id }}</td>
+        <td>{{ classroom.classcode }}</td>
+        <td>{{ classroom.classname }}</td>
         <td>
-                <a class="text-decoration-none" href="{{ path('classroom_edit', {'id' : class.id }) }}">
+                <a class="text-decoration-none" href="{{ path('classroom_edit', {'id' : classroom.id }) }}">
                     <img src="{{ asset('button/edit.png') }}" width="40" height="40">
                 </a>
-                <a class="text-decoration-none" href="{{ path('classroom_delete', {'id' : class.id }) }}"
+                <a class="text-decoration-none" href="{{ path('classroom_delete', {'id' : classroom.id }) }}"
                 onclick="return confirm('Are you sure to delete this classroom ?');"
                 >
                     <img src="{{ asset('button/delete.png') }}" width="40" height="40">
