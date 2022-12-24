@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-8 text-center mt-5">
+   <div class="row">
+      <div class="col-4">
+         <div class="card">
+            <img src="{{ userdetails.image }}" width="300" height="300">
+         </div>
+      </div>
+      <div class="col-6">
+      <td>
+                <a class="text-decoration-none" href="{{ path('app_student_detail_crud', {'id' : userdetails.id }) }}">
+                    <img src="{{ asset('/button/back.png') }}" width="40" height="40">
+                </a>
+               </td>
+         <table class="table table-bordered">
+            <tr>
+               <th colspan="2" class="bg-light">
+                  <h2 class="text-danger"> user Information </h2>
+               </th>
+            </tr>
+            <tr class="h4">
+               <th>Name</th>
+               <td>{{ userdetails.name }}</td>
+            </tr>
+            <tr class="h4">
+               <th>Age </th>
+               <td>{{ userdetails.Age}} </td>
+            </tr>
+            <tr class="h4">
+               <th>Address</th>
+               <td>{{ userdetails.address }}</td>
+            </tr>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </div>
+</div>
+{% endblock %}

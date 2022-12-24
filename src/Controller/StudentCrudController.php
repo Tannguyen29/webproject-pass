@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Userdetail;
 use App\Form\UserdetailType;
+use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Repository\UserdetailRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,35 +32,17 @@ class StudentCrudController extends AbstractController
                 'userdetails' => $userdetails
             ]);
       }
-    
-    #[Route('studentdetail/add', name: 'student_detail_add')]
-      public function UserAdd (Request $request, ManagerRegistry $managerRegistry) {
-        $userdetails = new Userdetail;
-        $form = $this->createForm(UserdetailType::class,$userdetails);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager = $managerRegistry->getManager();
-            $manager->persist($userdetails);
-            $manager->flush();
-            $this->addFlash('Info','Add user successfully !');
-            return $this->redirectToRoute('app_student_detail_crud');
-        }
-        return $this->renderForm('userdetail/add.html.twig',
-        [
-            'userdetailsForm' => $form
-        ]);
-      } 
 
     #[Route('/detail/{id}', name: 'student_detail')]
-    public function studentDetail ($id, UserRepository $UserRepository) {
-      $users = $UserRepository->find($id);
-      if ($users== null) {
+    public function studentDetail ($id, UserdetailRepository $UserdetailRepository) {
+      $userdetails = $UserdetailRepository->find($id);
+      if ($userdetails== null) {
           $this->addFlash('Warning', 'Invalid author id !');
-          return $this->redirectToRoute('app_admin');
+          return $this->redirectToRoute('app_student_detail_crud');
       }
-      return $this->render('student_crud\detail.html.twig',
+      return $this->render('userdetail/detail.html.twig',
           [
-              'users' => $users
+              'userdetails' => $userdetails
           ]);
     }
     
@@ -76,7 +59,7 @@ class StudentCrudController extends AbstractController
         $manager->flush();
         $this->addFlash('Info', 'Delete users successfully !');
     }
-    return $this->redirectToRoute('app_student_crud');
+    return $this->redirectToRoute('app_student_detail_crud');
   }
 
   
@@ -85,18 +68,18 @@ class StudentCrudController extends AbstractController
     $users = $UserRepository->find($id);
     if ($users == null) {
         $this->addFlash('Warning', 'users not existed !');
-        return $this->redirectToRoute('app_student_crud');
+        return $this->redirectToRoute('app_student_detail_crud');
     } else {
-        $form = $this->createForm(UserType::class,$users);
+        $form = $this->createForm(RegistrationFormType::class,$users);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $manager = $managerRegistry->getManager();
             $manager->persist($users);
             $manager->flush();
             $this->addFlash('Info','Edit users successfully !');
-            return $this->redirectToRoute('app_student_crud');
+            return $this->redirectToRoute('app_student_detail_crud');
         }
-        return $this->renderForm('student_crud/edit.html.twig',
+        return $this->renderForm('userdetail/edit.html.twig',
         [
             'userForm' => $form
         ]);
