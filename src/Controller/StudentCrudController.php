@@ -37,7 +37,7 @@ class StudentCrudController extends AbstractController
     public function studentDetail ($id, UserdetailRepository $UserdetailRepository) {
       $userdetails = $UserdetailRepository->find($id);
       if ($userdetails== null) {
-          $this->addFlash('Warning', 'Invalid author id !');
+          $this->addFlash('Warning', 'Invalid user id !');
           return $this->redirectToRoute('app_student_detail_crud');
       }
       return $this->render('userdetail/detail.html.twig',
