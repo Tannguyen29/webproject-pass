@@ -1,20 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StudentController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/webproject-pass/src/Controller/StudentController.php'|file_link(0) }}">src/Controller/StudentController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/webproject-pass/templates/student/index.html.twig'|file_link(0) }}">templates/student/index.html.twig</a></code></li>
-    </ul>
+    <style>
+        body {
+            padding-top: 140px;
+        }
+    </style>
+<div class="container-fluid" style="border:1px solid #cecece;">
+<div class="row">
+    <div class="col-sm-6 mb-3 mb-md-0">
+		<a>
+			<img src="https://reviewedu.net/wp-content/uploads/2021/10/dai-hoc-fpt-greenwich-0-1.png" style="width: 100%;">
+		</a>
+    </div>
+<div class="col-sm-6">
+            <div class="card">
+                <div class="card-header" style="font-weight: bold">User Role
+                    
+                </div>
+                <div class="card-body">
+                    
+                    <div class="col-md-12 col-sm-12 col-lg-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Main Function</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                  </li>
+                                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                  </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                              </div>
+                            <div class="x_content" style="display: block;">
+                            <ul>
+                                <li><a class="nav-link" href="#">Account Information</a></li>
+                                <li><a class="nav-link" href="#">Curriculum</a></li>
+                                <li><a class="nav-link" href="#">Schedule</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
