@@ -39,7 +39,7 @@ class ClassroomCrudController extends AbstractController
                 $manager->persist($classroom);
                 $manager->flush();
                 $this->addFlash('Info', 'Edit class info successfully');
-                return $this->redirectToRoute('app_classroom');
+                return $this->redirectToRoute('app_classroom_crud');
             }
             return $this->renderForm('classroom_crud/edit_classroom.html.twig',
             [
@@ -61,7 +61,7 @@ class ClassroomCrudController extends AbstractController
           $manager->flush();
           $this->addFlash('Info', 'Delete users successfully !');
       }
-      return $this->redirectToRoute('app_classroom');
+      return $this->redirectToRoute('app_classroom_crud');
     }
 
     #[Route('/add', name: 'classroom_add')]
@@ -74,7 +74,7 @@ class ClassroomCrudController extends AbstractController
           $manager->persist($class);
           $manager->flush();
           $this->addFlash('Info','Add classroom successfully !');
-          return $this->redirectToRoute('app_classroom');
+          return $this->redirectToRoute('app_classroom_crud');
       }
       return $this->renderForm('classroom_crud/add_classroom.html.twig',
       [
