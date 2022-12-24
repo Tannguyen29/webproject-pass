@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+#[Route('/admins')]
 class StudentCrudController extends AbstractController
 {
     #[Route('/crud', name: 'app_student_crud')]
@@ -24,7 +24,7 @@ class StudentCrudController extends AbstractController
             ]);
       }
 
-      #[Route('studentdetail/crud', name: 'app_student_detail_crud')]
+      #[Route('/studentdetail/crud', name: 'app_student_detail_crud')]
     public function studendetailtindex (UserdetailRepository $UserdetailRepository):Response {
         $userdetails=$UserdetailRepository->findAll();
         return $this->render('userdetail/index.html.twig',
@@ -49,13 +49,13 @@ class StudentCrudController extends AbstractController
 
   #[Route('/delete/{id}', name: 'student_delete')]
   public function studentDelete ($id, ManagerRegistry $managerRegistry) {
-    $users = $managerRegistry->getRepository(User::class)->find($id);
-    if ($users == null) {
+    $userdetails = $managerRegistry->getRepository(Userdetail::class)->find($id);
+    if ($userdetails == null) {
         $this->addFlash('Warning', 'users not existed !');
     
     } else {
         $manager = $managerRegistry->getManager();
-        $manager->remove($users);
+        $manager->remove($userdetails);
         $manager->flush();
         $this->addFlash('Info', 'Delete users successfully !');
     }
@@ -85,4 +85,8 @@ class StudentCrudController extends AbstractController
         ]);
     }
 }
+
+
+
+
 }
