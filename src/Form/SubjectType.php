@@ -3,10 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Subject;
+use Doctrine\DBAL\Types\FloatType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class SubjectType extends AbstractType
 {
@@ -28,6 +31,23 @@ class SubjectType extends AbstractType
                     'minlength' => 2,
                     'maxlength' => 20
                 ]
+            ])
+            ->add('Sunjectfee',TextType::class,
+            [
+                'label' => 'Sunject Fee',
+                'attr' => [
+                    'maxlength' => 255
+                ]
+            ])
+            ->add('subjectstartdate', DateType::class,
+            [
+                'label' => 'subjectstartdate',
+                'widget' => 'single_text'
+            ])
+            ->add('subjectenddate', DateType::class,
+            [
+                'label' => 'subjectenddate',
+                'widget' => 'single_text'
             ])
         ;
     }

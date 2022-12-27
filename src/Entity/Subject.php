@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SubjectRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SubjectRepository::class)]
@@ -18,6 +19,15 @@ class Subject
 
     #[ORM\Column(length: 30)]
     private ?string $Subjectname = null;
+
+    #[ORM\Column]
+    private ?float $SunjectFee = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $SubjectStartDate = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $SubjectEndDate = null;
 
     public function getId(): ?int
     {
@@ -46,5 +56,44 @@ class Subject
         $this->Subjectname = $Subjectname;
 
         return $this;
+    }
+
+    public function getSunjectFee(): ?float
+    {
+        return $this->SunjectFee;
+    }
+
+    public function setSunjectFee(float $SunjectFee): self
+    {
+        $this->SunjectFee = $SunjectFee;
+
+        return $this;
+    }
+
+    public function getSubjectStartDate(): ?\DateTimeInterface
+    {
+        return $this->SubjectStartDate;
+    }
+
+    public function setSubjectStartDate(\DateTimeInterface $SubjectStartDate): self
+    {
+        $this->SubjectStartDate = $SubjectStartDate;
+
+        return $this;
+    }
+
+    public function getSubjectEndDate(): ?\DateTimeInterface
+    {
+        return $this->SubjectEndDate;
+    }
+
+    public function setSubjectEndDate(\DateTimeInterface $SubjectEndDate): self
+    {
+        $this->SubjectEndDate = $SubjectEndDate;
+
+        return $this;
+    }
+    public function _toString(): string{
+        return $this->getDateTime();
     }
 }
